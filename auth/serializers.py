@@ -15,14 +15,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         if attrs.get('password') != attrs.get('password2'):
             raise serializers.ValidationError({"password": "Password fields didn't match."})
         return attrs
-    def create(self,validated_data):
-        validated_data.pop('password2', None)
-        password = validated_data.pop('password', None)
-            # Create user with provided fields; pass password separately
+    def create(self, validated_data):
+        validated_data.pop('password2')
+        password = validated_data.pop('password')
         user = CustomerRegister.objects.create_user(**validated_data)
-        if password:
-            user.set_password(password)
-            user.save()
+        user.set_password(password)
+        user.save()
         return user
 class UserLoginSerializer(serializers.Serializer):
     login = serializers.CharField()
