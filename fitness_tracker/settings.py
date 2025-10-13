@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     
     'auth.apps.AuthConfig',
+    'auth',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +107,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # YOUR CUSTOM SETTINGS
-AUTH_USER_MODEL = 'custom_auth.CustomerRegister'
+AUTH_USER_MODEL = 'auth.CustomerRegister'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
