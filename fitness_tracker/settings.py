@@ -11,16 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-3t30_%$99i@*9uf%mbcc7dft*0r^v6e21+^$*qii94z*hb_2b4')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.onrender.com',
-    '.render.com',
-]
+ALLOWED_HOSTS = ['*']  # Use this for now
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',  # Django's built-in auth
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -36,8 +31,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     
-    # Your custom auth app with custom label
-    'auth.apps.AuthConfig',  # This uses the custom label 'custom_auth'
+    'users',  # Your custom user app
 ]
 
 MIDDLEWARE = [
@@ -105,8 +99,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Use the CUSTOM LABEL, not the folder name
-AUTH_USER_MODEL = 'custom_auth.CustomerRegister'
+AUTH_USER_MODEL = 'users.CustomerRegister'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
