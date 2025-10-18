@@ -235,7 +235,7 @@ class Leaderboard(models.Model):
     def __str__(self):
         return f"{self.period} Leadersboard - {self.snapshot_date}"
 class LeaderboardEntry(models.Model):
-    Leadersboard = models.ForeignKey(leaderboard , on_delete=models.CASCADE , related_name = 'entries')
+    Leadersboard = models.ForeignKey(Leaderboardeaderboard , on_delete=models.CASCADE , related_name = 'entries')
     user = models.ForeignKey(settings.AUTH_USER_MODEL ,on_delete = models.CASCADE)
     rank = models.IntegerField()
     points = models.IntegerField()
