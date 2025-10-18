@@ -231,11 +231,11 @@ class Leaderboard(models.Model):
     snapshot_date = models.DateTimeField(default = timezone.now)
     created_at = models.DateField(auto_now_add = True)
     class Meta:
-        ordering = ['-snapshot' , 'period']
+        ordering = ['-snapshot_date' , 'period']
     def __str__(self):
         return f"{self.period} Leadersboard - {self.snapshot_date}"
 class LeaderboardEntry(models.Model):
-    Leadersboard = models.ForeignKey(Leaderboardeaderboard , on_delete=models.CASCADE , related_name = 'entries')
+    leaderboard = models.ForeignKey(Leaderboard, on_delete=models.CASCADE, related_name='entries')
     user = models.ForeignKey(settings.AUTH_USER_MODEL ,on_delete = models.CASCADE)
     rank = models.IntegerField()
     points = models.IntegerField()
